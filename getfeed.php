@@ -7,7 +7,7 @@
 	$file_name = "cache.txt";
 	
 	$url = "https://api.twitter.com/1.1/search/tweets.json";
-	$getField = "?q=%23Paris&result_type=recent";
+	$getField = "?q=%23Tallinn&result_type=recent";
 	$requestMethod = "GET";
 	
 	
@@ -68,17 +68,18 @@
 		}
 		 
 	 }
-	
-	
+	 
+	 
 	//echo count($object->statuses);
 	
 	
 	file_put_contents($file_name, json_encode($object));
+	
+	
 	
 	echo json_encode($object);
 	
 	
 	
 	
-?> 
 ?> 

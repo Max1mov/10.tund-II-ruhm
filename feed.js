@@ -1,11 +1,19 @@
+var $grid;
 $(function() {
   
   //laetud
     
   getTweets();
   
+  $grid = $('#content').isotope({
+	  //üks kast
+	  itemSelector: ".item"
+  });
+  
   
 }); 
+
+
 
 
 function getTweets(){
@@ -38,7 +46,7 @@ function printTweets(newTweets){
 		
 		html += '<div class="item">'+
 			
-			'<div class="profile-image" style="background-image:url('+tweet.user.profile_image_url+')"></div>'+
+			'<div class="profile-image" style="background-image:url('+tweet.user.profile_image_url.replace("_normal", "")+')"></div>'+
 			'<p>'+tweet.user.name+'</p>'+
 			'<p>'+tweet.text+'</p>'+
 
@@ -46,6 +54,17 @@ function printTweets(newTweets){
 		
 	});
 	
-	$("#content").append( $(html) );
+	//$("#content").append( $(html) );
+	
+	var tweetsHTML = $(html);
+	
+	$grid.prepend(tweetsHTML)
+	     .isotope('prepended', tweetsHTML)
+		 .isotope('layout');
+	
+	//oota ja siis küsi uuesti
+ 	window.setTimeout(function(){
+ 		getTweets();	},10000);
+	
 	
 }
